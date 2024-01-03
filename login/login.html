@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="container-form">
-            <form class="form-inputs" [formGroup]="loginForm" (submit)="loginUser()">
+            <form class="form-inputs" (submit)="loginUser()">
                 <div class="group-input">
                     <div class="text-info">
                         E-mail
@@ -44,13 +44,12 @@
                         Esqueceu sua senha?
                     </div>
                 <div class="group-input">
-                    <input type="submit" class="btn-login" value="Login" [ngClass]="{'disabled' : !loginForm.valid}"
-                        [disabled]="!loginForm.valid">
+                    <input type="submit" class="btn-login" value="Login">
 
                 </div>
             </form>
         </div>
     </div>
 </div>
-<script src="login.js"></script>
 </body>
+<script src="login.js"></script>
