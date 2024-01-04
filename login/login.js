@@ -10,7 +10,7 @@ document.getElementById('loginForm').onsubmit = async function(event) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email: email, password: password })
+            body: JSON.stringify({ Email: email, Password: password })
         });
 
         if (response.ok) {
