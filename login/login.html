@@ -23,33 +23,34 @@
             </div>
         </div>
         <div class="container-form">
-            <form class="form-inputs" (submit)="loginUser()">
+            <form id="loginForm">
                 <div class="group-input">
                     <div class="text-info">
                         E-mail
                     </div>
-                    <input class="input-form" type="text" name="email" id="email" placeholder="Digite aqui o seu e-mail"
-                        formControlName="email" required="">
+                        <div class=input-form>
+                            <input type="email" id="email" placeholder="Digite aqui seu e-mail" required>
+                        </div>
                 </div>
-
                 <div class="group-input">
                     <div class="text-info">
                         Senha
                     </div>
-                    <input class="input-form" type="password" name="password" id="password" placeholder="Digite a sua senha"
-                        formControlName="password" required="">
+                    <div class= input-form>
+                        <input type="password" id="password" placeholder="Digite aqui sua senha" required>
+                    </div>
                 </div>
                 <div class="info-login">
                     <div class="text-info">
                         Esqueceu sua senha?
                     </div>
+                </div>
                 <div class="group-input">
                     <input type="submit" class="btn-login" value="Login">
-
                 </div>
-            </form>
+            </form>                     
         </div>
     </div>
 </div>
-</body>
 <script src="login.js"></script>
+</body>
