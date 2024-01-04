@@ -20,7 +20,7 @@ document.getElementById('loginForm').onsubmit = async function(event) {
             // Aqui você pode redirecionar o usuário ou fazer o que precisar com o token
             // Por exemplo, salvar o token em localStorage e redirecionar
             localStorage.setItem('userToken', token);
-            window.location.href = '/index.html'; // Substituir pelo caminho correto
+            window.location.href = 'index.html'; // Substituir pelo caminho correto
         } else {
             console.error("Credenciais inválidas ou erro no servidor");
             // Aqui você pode mostrar alguma mensagem de erro para o usuário
