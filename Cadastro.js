@@ -34,9 +34,4 @@ document.getElementById("userSignupForm").addEventListener("submit", function(e)
             document.getElementById("message").innerText = "Falha no cadastro: " + data.message;
         }
     })
-    .catch(error => {
-        // Captura qualquer erro que ocorra durante a execução
-        console.error('Error:', error);
-        document.getElementById("message").innerText = "Erro ao enviar o formulário: " + error;
-    });
 });
