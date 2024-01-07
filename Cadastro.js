@@ -3,7 +3,7 @@ document.getElementById("userSignupForm").addEventListener("submit", function(e)
 
     var formData = new FormData(this);
 
-    fetch('https://localhost:7288/AdicionaUsuario', {
+    fetch('/AdicionaUsuario', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
