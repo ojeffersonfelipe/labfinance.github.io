@@ -9,12 +9,12 @@ document.getElementById("userSignupForm").addEventListener("submit", function(e)
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            email: formData.get('email'),
-            senha: formData.get('senha'),
-            cpf: formData.get('cpf'),
-            nome: formData.get('nome'),
-            cargo: formData.get('cargo')
-        }),
+                email: formData.get('email'),
+                senha: formData.get('senha'),
+                cpf: formData.get('cpf'),
+                nome: formData.get('nome'),
+                cargo: formData.get('cargo')
+            }),
         
     })
     .then(response => {
