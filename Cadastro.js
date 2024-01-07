@@ -1,20 +1,25 @@
-document.getElementById("userSignupForm").addEventListener("submit", function(e){
+document.getElementById("userSignupForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
     var formData = new FormData(this);
 
-    fetch('/AdicionaUsuario', {
+    var user = {
+        email: formData.get('email'),
+        senha: formData.get('senha'),
+        cpf: formData.get('cpf'),
+        nome: formData.get('nome'),
+        cargo: formData.get('cargo')
+    };
+
+    // Isto imprimirá os dados do usuário no console para fins de debug
+    console.log("Dados que serão enviados para a API:", user);
+
+    fetch('https://localhost:7288/AdicionaUsuario', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-                email: formData.get('email'),
-                senha: formData.get('senha'),
-                cpf: formData.get('cpf'),
-                nome: formData.get('nome'),
-                cargo: formData.get('cargo'),
-            }),
+        body: JSON.stringify(user),
         
     })
     .then(response => {
@@ -27,12 +32,13 @@ document.getElementById("userSignupForm").addEventListener("submit", function(e)
     })
     .then(data => {
         // Processa a resposta do servidor
-        // Aqui você pode verificar o conteúdo específico de 'data' para exibir a mensagem correta
-        if(data.success) { // Supondo que 'success' é uma propriedade da resposta do servidor
+        if(data.success) {
             document.getElementById("message").innerText = "Cadastro realizado com sucesso!";
         } else {
-            // Use 'data.message' ou uma propriedade semelhante conforme a resposta do seu servidor
             document.getElementById("message").innerText = "Falha no cadastro: " + data.message;
         }
     })
+    .catch(error => {
+        console.error('Erro na solicitação:', error);
+    });
 });
