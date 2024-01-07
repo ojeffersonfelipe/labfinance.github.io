@@ -13,7 +13,7 @@ document.getElementById("userSignupForm").addEventListener("submit", function(e)
                 senha: formData.get('senha'),
                 cpf: formData.get('cpf'),
                 nome: formData.get('nome'),
-                cargo: formData.get('cargo')
+                cargo: formData.get('cargo'),
             }),
         
     })
