@@ -4,11 +4,11 @@ document.getElementById("userSignupForm").addEventListener("submit", function(e)
     var formData = new FormData(this);
 
     var user = {
-        email: formData.getElementById('email'),
-        senha: formData.getElementById('senha'),
-        cpf: formData.getElementById('cpf'),
-        nome: formData.getElementById('nome'),
-        cargo: formData.getElementById('cargo')
+        email: formData.getElementById('email').value,
+        senha: formData.getElementById('senha').value,
+        cpf: formData.getElementById('cpf').value,
+        nome: formData.getElementById('nome').value,
+        cargo: formData.getElementById('cargo').value
     };
 
     // Isto imprimirá os dados do usuário no console para fins de debug
