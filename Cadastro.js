@@ -5,6 +5,9 @@ document.getElementById("userSignupForm").addEventListener("submit", function(e)
 
     fetch('https://localhost:7288/AdicionaUsuario', {
         method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
             email: formData.get('email'),
             senha: formData.get('senha'),
@@ -12,9 +15,7 @@ document.getElementById("userSignupForm").addEventListener("submit", function(e)
             nome: formData.get('nome'),
             cargo: formData.get('cargo')
         }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        
     })
     .then(response => {
         // Verifica se a solicitação foi bem-sucedida
