@@ -2,12 +2,13 @@ document.getElementById("userSignupForm").addEventListener("submit", function(e)
     e.preventDefault();
 
     var user = {
-        email: document.getElementById('email'),
-        senha: document.getElementById('senha'),
-        cpf: document.getElementById('cpf'),
-        nome: document.getElementById('nome'),
-        cargo: document.getElementById('cargo')
+        email: document.getElementById('email').value, // Acessando o valor
+        senha: document.getElementById('senha').value, // Acessando o valor
+        cpf: document.getElementById('cpf').value, // Acessando o valor
+        nome: document.getElementById('nome').value, // Acessando o valor
+        cargo: document.getElementById('cargo').value // Acessando o valor
     };
+
     // Isto imprimirá os dados do usuário no console para fins de debug
     console.log("Dados que serão enviados para a API:", user);
 
