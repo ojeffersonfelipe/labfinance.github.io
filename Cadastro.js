@@ -9,9 +9,6 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
         cargo: document.getElementById('cargo').value // Acessando o valor
     };
 
-    // Isto imprimirá os dados do usuário no console para fins de debug
-    console.log("Dados que serão enviados para a API:", user);
-
     fetch('https://localhost:7288/AdicionaUsuario', {
         method: 'POST',
         headers: {
