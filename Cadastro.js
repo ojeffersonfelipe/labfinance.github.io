@@ -25,16 +25,16 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
         }
         return response.json(); // Se tudo estiver ok, prosseguimos com a resposta JSON
     })
-    .then(response => {
+    .then(data => {
         // Aqui você trata a resposta de sucesso
-        if(data.code == "DuplicateUserName") {
+        if(data.body === "Usuário Adicionado") {
+            alert("Cadastro realizado com sucesso!");
             document.getElementById("message").innerText = "Cadastro realizado com sucesso!";
             document.getElementById("userSignupForm").reset(); // Limpar o formulário após o sucesso, se desejado
         } else {
             // Lida com qualquer outra resposta que não seja a esperada
-            throw new Error(data.message + error.message);
+            throw new Error(data.message || "Ocorreu um erro desconhecido");
         }
-        
     })
     .catch(error => {
         // Tratamento de erros
