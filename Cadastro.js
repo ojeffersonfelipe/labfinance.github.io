@@ -1,14 +1,16 @@
 document.getElementById("userSignupForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
+    // Preparando dados do usuário
     var user = {
-        email: document.getElementById('email').value, // Acessando o valor
-        senha: document.getElementById('senha').value, // Acessando o valor
-        cpf: document.getElementById('cpf').value, // Acessando o valor
-        nome: document.getElementById('nome').value, // Acessando o valor
-        cargo: document.getElementById('cargo').value // Acessando o valor
+        email: document.getElementById('email').value,
+        senha: document.getElementById('senha').value,
+        cpf: document.getElementById('cpf').value,
+        nome: document.getElementById('nome').value,
+        cargo: document.getElementById('cargo').value
     };
 
+    // Iniciar a solicitação POST
     fetch('https://localhost:7288/AdicionaUsuario', {
         method: 'POST',
         headers: {
@@ -17,19 +19,22 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
         body: JSON.stringify(user),
         
     })
-        .then(response => {
-            // Verifica se a solicitação foi bem-sucedida
-            if (response.ok) {
-                return response.json(); // Continua para processar a resposta do servidor
-            } else {
-                throw new Error('Algo deu errado no servidor!'); // Lança um erro se a resposta não for bem-sucedida
-            }
-        })
-        .then(data => {
-            // Processa a resposta do servidor
-            if (data.success) {
-                document.getElementById("message").innerText = "Cadastro realizado com sucesso!";
-            }
-        })
-    }
-)
+    .then(response => {
+        if (!response.ok) {
+            // Se não for uma resposta de sucesso, lançamos um erro com o status para tratamento no catch
+            return response.json().then(err => { throw new Error(`Erro ${response.status}: ${err.message}`) });
+        }
+        return response.json(); // Continuamos com a resposta JSON se tudo estiver ok
+    })
+    .then(data => {
+        // Aqui você trata a resposta de sucesso
+        document.getElementById("message").innerText = "Cadastro realizado com sucesso!";
+        // Limpar o formulário após o sucesso, se desejado
+        document.getElementById("userSignupForm").reset();
+    })
+    .catch(error => {
+        // Tratamento de erros
+        console.error('Erro na solicitação:', error);
+        document.getElementById("message").innerText = "Falha no cadastro: " + error.message;
+    });
+});
