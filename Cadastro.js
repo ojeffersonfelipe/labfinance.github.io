@@ -29,7 +29,7 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
     .then(data => {
         // Aqui você trata a resposta de sucesso
         alert("Cadastro realizado com sucesso!");
-        document.getElementById("message").innerText = "Cadastro realizado com sucesso!";
+        document.getElementById("confirmed").innerText = "Cadastro realizado com sucesso!";
         // Limpar o formulário após o sucesso, se desejado
         document.getElementById("userSignupForm").reset();
     })
