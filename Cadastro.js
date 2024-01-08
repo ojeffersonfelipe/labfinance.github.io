@@ -32,8 +32,6 @@ document.getElementById("userSignupForm").addEventListener("submit", function(e)
         // Processa a resposta do servidor
         if(data.success) {
             document.getElementById("message").innerText = "Cadastro realizado com sucesso!";
-        } else {
-            document.getElementById("message").innerText = "Falha no cadastro: " + data.message;
         }
     })
     .catch(error => {
