@@ -19,7 +19,7 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
         body: JSON.stringify(user),
     })
     .then(response => {
-        if (!response.ok) {
+        if (response.ok) {
             // Se não for uma resposta de sucesso, processamos o erro
             return response.json().then(errors => {
                 // Supondo que 'errors' é uma lista de objetos de erro
