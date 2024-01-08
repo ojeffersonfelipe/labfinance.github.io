@@ -27,7 +27,7 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
     })
     .then(data => {
         // Aqui você trata a resposta de sucesso
-        if(data.JSON === "Usuário Adicionado") {
+        if(data.message === "Usuário Adicionado") {
             alert("Cadastro realizado com sucesso!");
             document.getElementById("message").innerText = "Cadastro realizado com sucesso!";
             document.getElementById("userSignupForm").reset(); // Limpar o formulário após o sucesso, se desejado
