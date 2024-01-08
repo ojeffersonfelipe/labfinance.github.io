@@ -21,19 +21,19 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
     .then(response => {
         if (!response.ok) {
             // Se não for uma resposta de sucesso, processamos o erro
-            return response.json().then(err => { throw new Error(`Erro ${response.status}: ${JSON.stringify(err)}`) });
+            return response.text().then(text => { throw new Error(`Erro ${response.status}: ${text}`) });
         }
-        return response.json(); // Continuamos com a resposta JSON se tudo estiver ok
+        return response.text(); // Se tudo estiver ok, prosseguimos com a resposta como texto
     })
-    .then(data => {
+    .then(text => {
         // Aqui você trata a resposta de sucesso
-        if(data && data.success) { // Supondo que o servidor retorne um objeto com uma propriedade 'success' para sucesso
+        if(text === "Usuário Adicionado") {
             alert("Cadastro realizado com sucesso!");
             document.getElementById("message").innerText = "Cadastro realizado com sucesso!";
             document.getElementById("userSignupForm").reset(); // Limpar o formulário após o sucesso, se desejado
         } else {
-            // Lida com casos de sucesso falso ou estrutura de resposta inesperada
-            throw new Error(data.message || "Ocorreu um erro desconhecido");
+            // Lida com qualquer outra resposta que não seja a esperada
+            throw new Error(text || "Ocorreu um erro desconhecido");
         }
     })
     .catch(error => {
