@@ -21,7 +21,11 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
     .then(response => {
         if (!response.ok) {
             // Se não for uma resposta de sucesso, processamos o erro
-            return response.json().then(err => { throw new Error(`Erro ${response.status}: ${err.message || JSON.stringify(err)}`) });
+            return response.json().then(errors => {
+                // Supondo que 'errors' é uma lista de objetos de erro
+                let errorMessages = errors.map(err => `${err.code}: ${err.description}`).join('\n');
+                throw new Error(errorMessages);
+            });
         }
         return response.json(); // Se tudo estiver ok, prosseguimos com a resposta JSON
     })
@@ -43,7 +47,7 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
         // Tratamento de erros
         console.error('Erro na solicitação:', error);
         let messageElement = document.getElementById("message");
-        messageElement.innerText = "Falha no cadastro: " + error.message;
+        messageElement.innerText = "Falha no cadastro: " + error.message; // Mostra as mensagens de erro da API
         messageElement.style.color = "red"; // Adiciona cor vermelha para falha
     });
 });
