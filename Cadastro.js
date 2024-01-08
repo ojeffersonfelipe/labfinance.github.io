@@ -27,17 +27,23 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
     })
     .then(data => {
         // Aqui você trata a resposta de sucesso
+        let messageElement = document.getElementById("message");
+        
         if(data.message === "Usuário Adicionado") {
-            document.getElementById("message").innerText = "Cadastro realizado com sucesso!";
+            messageElement.innerText = "Cadastro realizado com sucesso!";
+            messageElement.style.color = "green"; // Adiciona cor verde para sucesso
             document.getElementById("userSignupForm").reset(); // Limpar o formulário após o sucesso, se desejado
         } else {
             // Lida com qualquer outra resposta que não seja a esperada
-            throw new Error(data.message || "Ocorreu um erro desconhecido");
+            messageElement.innerText = `Falha no cadastro: ${data.message}`;
+            messageElement.style.color = "red"; // Adiciona cor vermelha para falha
         }
     })
     .catch(error => {
         // Tratamento de erros
         console.error('Erro na solicitação:', error);
-        document.getElementById("message").innerText = "Falha no cadastro: " + error.message;
+        let messageElement = document.getElementById("message");
+        messageElement.innerText = "Falha no cadastro: " + error.message;
+        messageElement.style.color = "red"; // Adiciona cor vermelha para falha
     });
 });
