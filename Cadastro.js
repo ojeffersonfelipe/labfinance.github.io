@@ -28,7 +28,6 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
     .then(data => {
         // Aqui você trata a resposta de sucesso
         if(data.message === "Usuário Adicionado") {
-            alert("Cadastro realizado com sucesso!");
             document.getElementById("message").innerText = "Cadastro realizado com sucesso!";
             document.getElementById("userSignupForm").reset(); // Limpar o formulário após o sucesso, se desejado
         } else {
@@ -39,7 +38,6 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
     .catch(error => {
         // Tratamento de erros
         console.error('Erro na solicitação:', error);
-        alert("Falha no cadastro: " + error.message); // Alerta o usuário
         document.getElementById("message").innerText = "Falha no cadastro: " + error.message;
     });
 });
