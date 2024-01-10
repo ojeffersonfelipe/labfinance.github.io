@@ -20,7 +20,7 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
     })
     .then(Response => {
         
-        if(Response.message == '"Usuário Adicionado"') {
+        if(Response.message == 'Usuário Adicionado') {
             messageElement.innerText = "Cadastro realizado com sucesso!";
             messageElement.style.color = "green"; 
             document.getElementById("userSignupForm").reset();
