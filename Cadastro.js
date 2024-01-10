@@ -21,15 +21,15 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
         },
         body: JSON.stringify(user),
     })
-    .then(response => response.json()) // Converte a resposta em JSON
-    .then(data => {
-        if(data.message == 'Usuário Adicionado') {
+    .then(response => response.text()) // Converte a resposta em texto
+    .then(responseText => {
+        if(responseText === '"Usuário Adicionado"') {
             messageElement.innerText = "Cadastro realizado com sucesso!";
             messageElement.style.color = "green"; 
             document.getElementById("userSignupForm").reset();
         } else {
             // Lida com qualquer outra resposta que não seja a esperada
-            messageElement.innerText = `Falha no cadastro: ${data.message}`;
+            messageElement.innerText = `Falha no cadastro: ${responseText}`;
             messageElement.style.color = "red"; // Adiciona cor vermelha para falha
         }
     })
