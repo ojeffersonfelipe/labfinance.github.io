@@ -28,12 +28,23 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
             const responseData = JSON.parse(responseText);
 
             if (Array.isArray(responseData) && responseData.length > 0) {
-                // Se a resposta for um array, lidar com erros conhecidos
-                if (responseData[0].code === "DuplicateUserName") {
-                    messageElement.innerText = "Erro: O e-mail já está em uso.";
-                } else {
-                    // Tratar outros erros que possam estar no array
-                    messageElement.innerText = "Erro no cadastro: " + responseData[0].description;
+                // Verifica os códigos de erro conhecidos
+                switch (responseData[0].code) {
+                    case "DuplicateUserName":
+                        messageElement.innerText = "Erro: O e-mail já está em uso.";
+                        break;
+                    case "PasswordTooShort":
+                        messageElement.innerText = "Erro: A senha deve ter pelo menos 6 caracteres.";
+                        break;
+                    case "PasswordRequiresNonAlphanumeric":
+                        messageElement.innerText = "Erro: A senha deve conter pelo menos um caractere não alfanumérico.";
+                        break;
+                    case "PasswordRequiresLower":
+                        messageElement.innerText = "Erro: A senha deve conter pelo menos uma letra minúscula ('a'-'z').";
+                        break;
+                    default:
+                        // Tratar outros erros que possam estar no array
+                        messageElement.innerText = "Erro no cadastro: " + responseData[0].description;
                 }
             } else if (responseText === '"Usuário Adicionado"') {
                 messageElement.innerText = "Cadastro realizado com sucesso!";
