@@ -10,6 +10,9 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
         cargo: document.getElementById('cargo').value
     };
 
+    // Elemento de mensagem
+    let messageElement = document.getElementById("message");
+
     // Iniciar a solicitação POST
     fetch('https://localhost:7288/AdicionaUsuario', {
         method: 'POST',
@@ -18,22 +21,21 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
         },
         body: JSON.stringify(user),
     })
-    .then(Response => {
-        
-        if(Response.message == 'Usuário Adicionado') {
+    .then(response => response.json()) // Converte a resposta em JSON
+    .then(data => {
+        if(data.message == 'Usuário Adicionado') {
             messageElement.innerText = "Cadastro realizado com sucesso!";
             messageElement.style.color = "green"; 
             document.getElementById("userSignupForm").reset();
         } else {
             // Lida com qualquer outra resposta que não seja a esperada
-            messageElement.innerText = `Falha no cadastro: ${Response.message}`;
+            messageElement.innerText = `Falha no cadastro: ${data.message}`;
             messageElement.style.color = "red"; // Adiciona cor vermelha para falha
         }
     })
     .catch(error => {
         // Tratamento de erros
         console.error('Erro na solicitação:', error);
-        let messageElement = document.getElementById("message");
         messageElement.innerText = "Falha no cadastro: " + error.message; // Mostra as mensagens de erro da API
         messageElement.style.color = "red"; // Adiciona cor vermelha para falha
     });
