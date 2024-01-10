@@ -46,6 +46,7 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
                         // Tratar outros erros que possam estar no array
                         messageElement.innerText = "Erro no cadastro: " + responseData[0].description;
                 }
+                messageElement.style.color = "red"; // Cor vermelha para erros
             } else if (responseText === '"Usuário Adicionado"') {
                 messageElement.innerText = "Cadastro realizado com sucesso!";
                 messageElement.style.color = "green"; 
@@ -53,18 +54,18 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
             } else {
                 // Lida com qualquer outra resposta que não seja a esperada
                 messageElement.innerText = `Falha no cadastro: ${responseText}`;
+                messageElement.style.color = "red"; // Cor vermelha para falhas genéricas
             }
         } catch (error) {
             // Se a resposta não puder ser analisada como JSON
             messageElement.innerText = `Falha no cadastro: ${responseText}`;
+            messageElement.style.color = "red"; // Cor vermelha para falhas na análise
         }
-
-        messageElement.style.color = "red"; // Adiciona cor vermelha para falha
     })
     .catch(error => {
         // Tratamento de erros
         console.error('Erro na solicitação:', error);
         messageElement.innerText = "Falha no cadastro: " + error.message; // Mostra as mensagens de erro da API
-        messageElement.style.color = "red"; // Adiciona cor vermelha para falha
+        messageElement.style.color = "red"; // Cor vermelha para erros de rede
     });
 });
