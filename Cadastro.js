@@ -21,17 +21,34 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
         },
         body: JSON.stringify(user),
     })
-    .then(response => response.text()) // Converte a resposta em texto
+    .then(response => response.text())
     .then(responseText => {
-        if(responseText === '"Usuário Adicionado"') {
-            messageElement.innerText = "Cadastro realizado com sucesso!";
-            messageElement.style.color = "green"; 
-            document.getElementById("userSignupForm").reset();
-        } else {
-            // Lida com qualquer outra resposta que não seja a esperada
+        try {
+            // Tenta analisar a resposta como JSON
+            const responseData = JSON.parse(responseText);
+
+            if (Array.isArray(responseData) && responseData.length > 0) {
+                // Se a resposta for um array, lidar com erros conhecidos
+                if (responseData[0].code === "DuplicateUserName") {
+                    messageElement.innerText = "Erro: O e-mail já está em uso.";
+                } else {
+                    // Tratar outros erros que possam estar no array
+                    messageElement.innerText = "Erro no cadastro: " + responseData[0].description;
+                }
+            } else if (responseText === '"Usuário Adicionado"') {
+                messageElement.innerText = "Cadastro realizado com sucesso!";
+                messageElement.style.color = "green"; 
+                document.getElementById("userSignupForm").reset();
+            } else {
+                // Lida com qualquer outra resposta que não seja a esperada
+                messageElement.innerText = `Falha no cadastro: ${responseText}`;
+            }
+        } catch (error) {
+            // Se a resposta não puder ser analisada como JSON
             messageElement.innerText = `Falha no cadastro: ${responseText}`;
-            messageElement.style.color = "red"; // Adiciona cor vermelha para falha
         }
+
+        messageElement.style.color = "red"; // Adiciona cor vermelha para falha
     })
     .catch(error => {
         // Tratamento de erros
