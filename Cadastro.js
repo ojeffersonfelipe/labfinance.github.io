@@ -19,12 +19,11 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
         body: JSON.stringify(user),
     })
     .then(Response => {
-        // Aqui você trata a resposta de sucesso
         
-        if(Response.message === '"Usuário Adicionado"') {
+        if(Response.message == '"Usuário Adicionado"') {
             messageElement.innerText = "Cadastro realizado com sucesso!";
-            messageElement.style.color = "green"; // Adiciona cor verde para sucesso
-            document.getElementById("userSignupForm").reset(); // Limpar o formulário após o sucesso, se desejado
+            messageElement.style.color = "green"; 
+            document.getElementById("userSignupForm").reset();
         } else {
             // Lida com qualquer outra resposta que não seja a esperada
             messageElement.innerText = `Falha no cadastro: ${Response.message}`;
