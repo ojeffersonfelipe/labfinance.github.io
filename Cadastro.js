@@ -27,7 +27,7 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
             document.getElementById("userSignupForm").reset(); // Limpar o formulário após o sucesso, se desejado
         } else {
             // Lida com qualquer outra resposta que não seja a esperada
-            messageElement.innerText = `Falha no cadastro: ${data.message}`;
+            messageElement.innerText = `Falha no cadastro: ${Response.message}`;
             messageElement.style.color = "red"; // Adiciona cor vermelha para falha
         }
     })
