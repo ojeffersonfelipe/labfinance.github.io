@@ -20,7 +20,6 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
     })
     .then(data => {
         // Aqui você trata a resposta de sucesso
-        let messageElement = document.getElementById("message");
         
         if(data.message === '"Usuário Adicionado"') {
             messageElement.innerText = "Cadastro realizado com sucesso!";
