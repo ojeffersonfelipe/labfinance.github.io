@@ -18,17 +18,6 @@ document.getElementById("userSignupForm").addEventListener("submit", function (e
         },
         body: JSON.stringify(user),
     })
-    .then(response => {
-        if (!response.ok) {
-            // Se não for uma resposta de sucesso, processamos o erro
-            return response.json().then(errors => {
-                // Supondo que 'errors' é uma lista de objetos de erro
-                let errorMessages = errors.map(err => `${err.code}: ${err.description}`).join('\n');
-                throw new Error(errorMessages);
-            });
-        }
-        return response.json(); // Se tudo estiver ok, prosseguimos com a resposta JSON
-    })
     .then(data => {
         // Aqui você trata a resposta de sucesso
         let messageElement = document.getElementById("message");
