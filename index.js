@@ -15,7 +15,6 @@ document.getElementById('loginForm').onsubmit = async function(event) {
 
         if (response.ok) {
             let token = await response.text(); // Assumindo que a resposta é apenas o token
-            console.log("Token recebido:", token);
 
             // Aqui você pode redirecionar o usuário ou fazer o que precisar com o token
             // Por exemplo, salvar o token em localStorage e redirecionar
