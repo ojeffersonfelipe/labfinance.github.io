@@ -1,8 +1,8 @@
 const sideMenu = document.querySelector('aside');
 const menuBtn = document.getElementById('menu-btn');
 const closeBtn = document.getElementById('close-btn');
-
 const darkMode = document.querySelector('.dark-mode');
+const logoutBtn = document.getElementById('logout-btn');
 
 menuBtn.addEventListener('click', () => {
     sideMenu.style.display = 'block';
@@ -18,6 +18,13 @@ darkMode.addEventListener('click', () => {
     darkMode.querySelector('span:nth-child(2)').classList.toggle('active');
 })
 
+logoutBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    // Limpe os dados de autenticação, como tokens, do armazenamento local ou da sessão
+    localStorage.removeItem('userToken');
+    // Redirecionar para a página de login
+    window.location.href = './index.html';
+        });
 
 const lastThreeTickets = Tickets.slice(-4); // Obtém os últimos três elementos do array
 
