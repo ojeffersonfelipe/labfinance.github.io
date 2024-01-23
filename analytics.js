@@ -4,6 +4,10 @@ const closeBtn = document.getElementById('close-btn');
 const darkMode = document.querySelector('.dark-mode');
 const logoutBtn = document.getElementById('logout-btn');
 
+if (!localStorage.getItem("userToken")) {
+    window.location.href = "./index.html"; // Redireciona para a página de login se não estiver autenticado
+}
+
 menuBtn.addEventListener('click', () => {
     sideMenu.style.display = 'block';
 });
