@@ -339,6 +339,13 @@ main .new-users .user-list .user .a {
     justify-content: center;
 }
 
+main .new-users .user-list .user .a .h2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 main .new-users .user-list .user img{
     width: 5rem;
     height: 5rem;
