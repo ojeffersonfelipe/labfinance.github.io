@@ -332,14 +332,7 @@ main .new-users .user-list .user{
     justify-content: center;
 }
 
-main .new-users .user-list .user .a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-main .new-users .user-list .user .a .h2{
+main .new-users .user-list .user a{
     display: flex;
     flex-direction: column;
     align-items: center;
